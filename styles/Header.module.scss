@@ -89,7 +89,6 @@
     .header {
         margin: 0;
         flex-direction: column;
-
         &--navbar {
             flex-direction: column;
             margin-bottom: 1.8rem;
@@ -128,7 +127,7 @@
     }
 
     .dropdown {
-        width: 100%;
+        width: 75%;
         max-height: 80vh;
         &--item {
             &__thumbnail {
