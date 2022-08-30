@@ -1,4 +1,4 @@
-import React, { Dispatch, FocusEventHandler, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from '../../styles/Header.module.scss'
 import Link from 'next/link'
