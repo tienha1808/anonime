@@ -22,32 +22,28 @@ function Video () {
     const containerRef: any = useRef()
 
     useEffect(() => {
-        if (videoRef) {
-            setDuration(Math.floor(videoRef.current.duration))
-        }
-    }, [videoRef])
-
-    useEffect(() => {
         const stop = setTimeout(() => setBgVideo(false), 1800)
         return () => clearTimeout(stop)
     }, [bgVideo === true])
 
     useEffect(() => {
-        if (duration) {
-            const intervalVideo = setInterval(() => {
-                const current = videoRef.current.currentTime
-                if (current < duration) {
-                    setCurrentTime(Math.floor(current * 100 / duration))
+        if (videoRef) {
+            setDuration(Math.floor(videoRef.current.duration))
+            if (duration) {
+                if (videoRef.current.currentTime === duration) {
+                    setPause(true)
                 } else {
-                    setCurrentTime(0)
-                    videoRef.current.pause()
-                    setPause(true)    
+                    const intervalVideo = setInterval(() => {
+                        const current = Math.floor(videoRef.current.currentTime * 100 / duration)
+                        setCurrentTime(current)
+                    }, 1000)
+                    return () => clearInterval(intervalVideo)
                 }
-            }, 1000)
-            return () => clearInterval(intervalVideo)
+            }
         }
-    }, [duration, currentTime])
-
+        
+    })
+    
     const handlePlayPause = () => {
         if (pause) {
             videoRef.current.play()
